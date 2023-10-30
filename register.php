@@ -29,7 +29,7 @@ include('includes/header.php');
                 ?>
                 <div class="card">
     <div class="card-header bg-primary">
-        <h4 class="text-white mb-0">Registration Form . . .</h4>
+        <h4 class="text-white mb-0">Registration Form</h4>
     </div>
     <div class="card-body">
         <form action="functions/authcode.php" method="POST" onsubmit="return validateForm()">
