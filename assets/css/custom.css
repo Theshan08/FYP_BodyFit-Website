@@ -1,0 +1,26 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.underline{
+    height: 5px;
+    width: 150px;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+.bg-F12E04{
+    background-color: #F12E04;
+}
+
+@media (min-width: 768px) {
+    .collapse.dont-collapse-sm {
+      display: block;
+      height: auto !important;
+      visibility: visible;
+    }
+}

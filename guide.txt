@@ -1,0 +1,9 @@
+Admin Credentials
+
+email - admin@gmail.com
+pass - 1234
+
+User Credentials
+
+email - user@gmail.com
+pass - 1234
