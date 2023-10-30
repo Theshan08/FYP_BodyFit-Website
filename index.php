@@ -13,7 +13,7 @@ include('includes/slider.php');
                 <h4>About Us</h4>
                 <div class="underline mb-2"></div>
                 <p>
-                hhhBody Fit boasts an extensive catalog of gym supplements and equipment that cater to every aspect of your fitness routine. No matter your fitness goals, from bulking up to slimming down or improving athletic performance, you'll find exactly what you need. The website offers a wide range of products, from protein powders and nutritional supplements to cardio machines, strength training equipment, and much more.     </p>
+                Body Fit boasts an extensive catalog of gym supplements and equipment that cater to every aspect of your fitness routine. No matter your fitness goals, from bulking up to slimming down or improving athletic performance, you'll find exactly what you need. The website offers a wide range of products, from protein powders and nutritional supplements to cardio machines, strength training equipment, and much more.     </p>
                 <p>
                 Beyond the chatbot, Body Fit is committed to fostering a sense of community among its customers. They provide forums and resources where you can connect with like-minded fitness enthusiasts, ask questions, and share your progress. The Body Fit community is there to inspire and support you on your fitness journey.
 <br>
