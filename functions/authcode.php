@@ -47,59 +47,66 @@ if(isset($_POST['register_btn']))
     }
 }
 
-if(isset($_POST['login_btn']))
-{
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
+session_start(); // Start the session
 
-    $login_query = "SELECT * FROM users WHERE email='$email'";
-    $login_query_run = mysqli_query($con, $login_query);
+if (isset($_POST['login_btn'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    if(mysqli_num_rows($login_query_run) > 0)
-    {
-        $userdata = mysqli_fetch_array($login_query_run);
-        
-        if($userdata['is_ban'] == 1){
-            redirect("../login.php", "Account Banned");
-            return;
-        }
-        
-        // Verify the entered password against the hashed password
-        if(password_verify($password, $userdata['password']))
-        {
-            $_SESSION['auth'] = true;
+    // Create a prepared statement
+    $login_query = "SELECT * FROM users WHERE email=?";
+    $stmt = mysqli_prepare($con, $login_query);
 
-            $userid = $userdata['id'];
-            $username = $userdata['name'];
-            $useremail = $userdata['email'];
-            $role_as = $userdata['role_as'];
+    if ($stmt) {
+        // Bind the email parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, "s", $email);
 
-            $_SESSION['auth_user'] = [
-                'user_id' => $userid,
-                'name' => $username,
-                'email' => $useremail
-            ];
+        // Execute the prepared statement
+        mysqli_stmt_execute($stmt);
 
-            $_SESSION['role_as'] = $role_as;
+        // Get the result
+        $result = mysqli_stmt_get_result($stmt);
 
-            if($role_as == 'admin')
-            {
-                redirect("../admin/index.php", "Welcome To Dashboard");
+        if (mysqli_num_rows($result) > 0) {
+            $userdata = mysqli_fetch_assoc($result);
+
+            if ($userdata['is_ban'] == 1) {
+                redirect("../login.php", "Account Banned");
+                return;
             }
-            else
-            {
-                redirect("../index.php", "Logged In Successfully");
+
+            // Verify the entered password against the hashed password
+            if (password_verify($password, $userdata['password'])) {
+                // Set session variables to indicate the user is logged in
+                $_SESSION['auth'] = true;
+                $_SESSION['auth_user'] = [
+                    'user_id' => $userdata['id'],
+                    'name' => $userdata['name'],
+                    'email' => $userdata['email'],
+                ];
+                $_SESSION['role_as'] = $userdata['role_as'];
+
+                if ($userdata['role_as'] == 'admin') {
+                    redirect("../admin/index.php", "Welcome To Dashboard");
+                } else {
+                    redirect("../index.php", "Logged In Successfully");
+                }
+            } else {
+                redirect("../login.php", "Invalid Credentials");
             }
-        }
-        else
-        {
+        } else {
             redirect("../login.php", "Invalid Credentials");
         }
+
+        // Close the prepared statement
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle the case where the prepared statement failed
+        redirect("../login.php", "Login Failed");
     }
-    else
-    {
-        redirect("../login.php", "Invalid Credentials");
-    }
+
+    // Close the database connection
+    mysqli_close($con);
 }
 
 

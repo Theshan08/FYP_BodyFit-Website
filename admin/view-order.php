@@ -33,7 +33,6 @@ $data = mysqli_fetch_array($orderData);
             <div class="card">
                 <div class="card-header bg-primary">
                     <span class="text-white fs-4"> View Order</span>
-                    <a href="orders.php" class="btn btn-warning float-end"> <i class="fa fa-reply"></i> Back</a>
                 </div>
                 <div class="card-body">
                     <div class="row">
