@@ -52,7 +52,7 @@ include('includes/header.php');
             </div>
             <div class="mb-2">
                 <label class="form-label mb-0">Confirm Password</label>
-                <input type="password" name="cpassword" class="form-control" placeholder="Confirm password" minlength="6" required>
+                <input type="password" name="cpassword" class="form-control" placeholder="Confirm password"  required>
             </div>
             
             <button type="submit" name="register_btn" class="btn btn-primary">Submit</button>
